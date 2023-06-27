@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nagisa_talk/widgets/chatMessageModel.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'dart:math' as math;
 
 class ChatDetailPage extends StatefulWidget{
   @override
@@ -7,6 +9,7 @@ class ChatDetailPage extends StatefulWidget{
 }
 
 class _ChatDetailPageState extends State<ChatDetailPage>{
+  final random = math.Random();
   List<ChatMessage> messages = [
     ChatMessage(messageContent: "ごきげんよう、先生。", messageType: "receiver"),
     ChatMessage(messageContent: "おはようございます、陛下。", messageType: "sender"),
@@ -42,7 +45,7 @@ class _ChatDetailPageState extends State<ChatDetailPage>{
                       children: [
                         Text("桐藤 ナギサ"),
                         SizedBox(height: 6,),
-                        Text("Online", style: TextStyle(color: Colors.grey.shade600, fontSize: 13)),
+                        Text(random.nextBool()?AppLocalizations.of(context)!.statusOnline:AppLocalizations.of(context)!.statusOffline ,style: TextStyle(color: Colors.grey.shade600, fontSize: 13)),
                       ],
                     ),
                   ),

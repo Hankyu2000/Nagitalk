@@ -10,5 +10,14 @@
   "hConversations": "Conversations",
   "@hConversations": {
     "description": "Header Conversations"
+  },
+  "statusOnline": "Online",
+  "@statusOnline": {
+    "description": "Status Online"
+  },
+  "statusOffline": "Offline",
+  "@statusOffline": {
+    "description": "Status Offline"
   }
+
 }

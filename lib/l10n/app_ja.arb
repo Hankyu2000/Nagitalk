@@ -1,5 +1,7 @@
 {
   "bNavBarChat": "チャット",
   "bNavBarStudents": "生徒",
-  "hConversations": "会話"
+  "hConversations": "会話",
+  "statusOnline": "オンライン",
+  "statusOffline": "オフライン"
 }
