@@ -5,6 +5,11 @@ import 'package:nagisa_talk/chatPage.dart';
 
 class HomePage extends StatelessWidget{
   @override
+  int _selectedIndex = 0;
+  static List<Widget> _pageList = [
+    ChatPage(),
+
+  ];
   Widget build(BuildContext context){
     return Scaffold(
       body: Container(
