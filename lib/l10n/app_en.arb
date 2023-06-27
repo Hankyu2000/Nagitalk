@@ -1,0 +1,14 @@
+{
+  "bNavBarChat": "Chat",
+  "@bNavBarChat": {
+    "description": "Bottom Navigation Bar Chat"
+  },
+  "bNavBarStudents": "Students",
+  "@bNavBarStudents": {
+    "description": "Bottom Navigation Bar Students"
+  },
+  "hConversations": "Conversations",
+  "@hConversations": {
+    "description": "Header Conversations"
+  }
+}
