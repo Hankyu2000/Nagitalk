@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:nagisa_talk/chatPage.dart';
-import 'package:nagisa_talk/studentsList.dart';
+import 'package:nagisa_talk/studentsListPage.dart';
 
 class HomePage extends StatefulWidget{
   @override

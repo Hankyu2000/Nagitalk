@@ -18,6 +18,10 @@
   "statusOffline": "Offline",
   "@statusOffline": {
     "description": "Status Offline"
+  },
+  "hStudents": "Students",
+  "@hStudents": {
+    "description": "Header Students"
   }
 
 }
