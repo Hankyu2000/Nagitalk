@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nagisa_talk/widgets/chatMessageModel.dart';
+import 'package:nagisa_talk/models/chatMessageModel.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'dart:math' as math;
 
