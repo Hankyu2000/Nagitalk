@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:nagisa_talk/addStudentPage.dart';
 import 'package:nagisa_talk/models/studentsModel.dart';
 import 'package:nagisa_talk/widgets/studentsList.dart';
 
@@ -57,7 +58,13 @@ class _StudentsListPageState extends State<StudentsListPage>{
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: null,
+        onPressed: (){
+          Navigator.push(context,
+            MaterialPageRoute(builder: (context){
+              return AddStudentPage();
+            })
+          );
+        },
 
       ),
     );

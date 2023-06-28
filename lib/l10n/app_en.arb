@@ -22,6 +22,18 @@
   "hStudents": "Students",
   "@hStudents": {
     "description": "Header Students"
+  },
+  "formName": "Name",
+  "@formName": {
+    "description": "Form Name"
+  },
+  "formSchoolName": "School Name",
+  "@formSchoolName": {
+    "description": "Form School Name"
+  },
+  "formPickImage": "Pick Image",
+  "@formPickImage": {
+    "description": "Pick Image"
   }
 
 }

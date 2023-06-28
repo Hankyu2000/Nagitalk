@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:nagisa_talk/chatDetailPage.dart';
 
 class StudentsList extends StatefulWidget{
-  String name;
-  String schoolName;
-  String imageUrl;
-  String uuid;
+  final String name;
+  final String schoolName;
+  final String imageUrl;
+  final String uuid;
   StudentsList({required this.name, required this.schoolName, required this.imageUrl, required this.uuid});
   @override
   _StudentsListState createState() => _StudentsListState();
@@ -14,16 +14,7 @@ class StudentsList extends StatefulWidget{
 class _StudentsListState extends State<StudentsList>{
   @override
   Widget build(BuildContext context){
-    return GestureDetector(
-      onTap: (){
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context){
-              return ChatDetailPage();
-            })
-        );
-
-      },
-      child: Container(
+    return  Container(
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
         child: Row(
           children: [
@@ -53,7 +44,6 @@ class _StudentsListState extends State<StudentsList>{
             ),
           ],
         ),
-      ),
-    );
+      );
   }
 }

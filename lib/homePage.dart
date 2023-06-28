@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:nagisa_talk/chatPage.dart';
 import 'package:nagisa_talk/studentsListPage.dart';
@@ -16,7 +15,7 @@ class _HomePageState extends State<HomePage>{
     StudentsListPage()
   ];
 
-  void _onItemTapped(int index){
+  void _onDestinationSelected(int index){
     setState( (){
       _selectedIndex = index;
     });
@@ -28,19 +27,18 @@ class _HomePageState extends State<HomePage>{
       body: Container(
         child: _pageList[_selectedIndex]
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Colors.amber,
-        selectedLabelStyle: TextStyle(fontWeight: FontWeight.w600),
-        unselectedLabelStyle: TextStyle(fontWeight: FontWeight.w600),
-        type: BottomNavigationBarType.fixed,
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        items: [
-          BottomNavigationBarItem(
+      bottomNavigationBar: NavigationBar(
+        animationDuration: Duration(milliseconds: 500),
+        onDestinationSelected: (int index){
+          _onDestinationSelected(index);
+        },
+        selectedIndex: _selectedIndex,
+        destinations: [
+          NavigationDestination(
             icon: Icon(Icons.chat_bubble_outline),
             label: AppLocalizations.of(context)!.bNavBarChat,
           ),
-          BottomNavigationBarItem(
+          NavigationDestination(
             icon: Icon(Icons.person_outline),
             label: AppLocalizations.of(context)!.bNavBarStudents,
           )
