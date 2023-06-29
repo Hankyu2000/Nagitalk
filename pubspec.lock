@@ -41,6 +41,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.17.1"
+  convert:
+    dependency: transitive
+    description:
+      name: convert
+      sha256: "0f08b14755d163f6e2134cb58222dd25ea2a2ee8a195e53983d57c075324d592"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.1"
   cross_file:
     dependency: transitive
     description:
@@ -65,6 +73,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
+  drift:
+    dependency: "direct main"
+    description:
+      name: drift
+      sha256: a8ec4e44b4359ef44eab3d2c2f8e44b41a00c15673b879984484b34d27656ad5
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.9.0"
   fake_async:
     dependency: transitive
     description:
@@ -402,6 +418,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.4.5+1"
+  sqlite3:
+    dependency: transitive
+    description:
+      name: sqlite3
+      sha256: f7511ddd6a2dda8ded9d849f8a925bb6020e0faa59db2443debc18d484e59401
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   stack_trace:
     dependency: transitive
     description:

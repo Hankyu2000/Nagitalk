@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:nagisa_talk/models/studentsModel.dart';
+import 'package:nagisa_talk/widgets/studentsList.dart';
 import 'dart:io';
 import 'package:uuid/uuid.dart';
 import 'dart:async';
@@ -14,7 +16,9 @@ class AddStudentPage extends StatefulWidget{
 class _AddStudentPageState extends State<AddStudentPage>{
   late File imageFile;
   final uuidObject = Uuid();
+  String _filePath = "";
   late final currentUUID = uuidObject.v4();
+  late Students sampleStudent = Students(uuid: currentUUID, )
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
@@ -64,12 +68,22 @@ class _AddStudentPageState extends State<AddStudentPage>{
               Container(
                 margin: EdgeInsets.symmetric(vertical: 5),
                 child: MaterialButton(
-                  onPressed: (){
-                    _getAndSaveFromDevice(source: ImageSource.gallery, filename: currentUUID);
+                  onPressed: () async{
+                    String? _filePathObj = await _getAndSaveFromDevice(source: ImageSource.gallery, filename: currentUUID);
+                    setState(() {
+                        _filePath = _filePathObj!;
+                    });
                   },
                   child: Text(AppLocalizations.of(context)!.formPickImage),
                 )
               ),
+              Container(
+                  margin: EdgeInsets.symmetric(vertical: 5),
+                  child: Text(_filePath)
+              ),
+              Container(
+                child: StudentsList(),
+              )
             ],
           )
         ),
@@ -80,10 +94,10 @@ class _AddStudentPageState extends State<AddStudentPage>{
     ImagePicker picker = ImagePicker();
     var imageFile = await picker.pickImage(source: source);
     if(imageFile == null){
-      return "";
-    }
-    var savedFilePath = await FileController.saveLocalImage(rawImage: imageFile, filename: filename);
-    return savedFilePath;
+    return "";
+  }
+  var savedFilePath = await FileController.saveLocalImage(rawImage: imageFile, filename: filename);
+  return savedFilePath;
   }
 
 }
