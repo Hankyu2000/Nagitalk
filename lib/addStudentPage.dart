@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
-
+import 'package:uuid/uuid.dart';
+import 'dart:async';
 import 'package:nagisa_talk/libraries/file_controller.dart';
 
 class AddStudentPage extends StatefulWidget{
@@ -12,6 +13,8 @@ class AddStudentPage extends StatefulWidget{
 
 class _AddStudentPageState extends State<AddStudentPage>{
   late File imageFile;
+  final uuidObject = Uuid();
+  late final currentUUID = uuidObject.v4();
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
@@ -61,7 +64,9 @@ class _AddStudentPageState extends State<AddStudentPage>{
               Container(
                 margin: EdgeInsets.symmetric(vertical: 5),
                 child: MaterialButton(
-                  onPressed: null,
+                  onPressed: (){
+                    _getAndSaveFromDevice(source: ImageSource.gallery, filename: currentUUID);
+                  },
                   child: Text(AppLocalizations.of(context)!.formPickImage),
                 )
               ),
@@ -71,14 +76,14 @@ class _AddStudentPageState extends State<AddStudentPage>{
     );
   }
 
-  void _getAndSaveFromDevice({required ImageSource source, required String filename}) async {
+  Future<String?> _getAndSaveFromDevice({required ImageSource source, required String filename}) async {
     ImagePicker picker = ImagePicker();
     var imageFile = await picker.pickImage(source: source);
     if(imageFile == null){
-      return;
+      return "";
     }
-    var savedFile = await FileController.saveLocalImage(rawImage: imageFile, filename: filename);
-    imageFile = savedFile;
+    var savedFilePath = await FileController.saveLocalImage(rawImage: imageFile, filename: filename);
+    return savedFilePath;
   }
 
 }
