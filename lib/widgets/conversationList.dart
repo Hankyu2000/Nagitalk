@@ -1,13 +1,16 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:nagisa_talk/chatDetailPage.dart';
+import 'package:nagisa_talk/models/studentsModel.dart';
+import 'package:avatar_stack/avatar_stack.dart';
 
 class ConversationList extends StatefulWidget{
-  final String name;
+  final Student student;
   final String messageText;
-  final String imageUrl;
   final String time;
-  final bool isMessageRead;
-  ConversationList({required this.name, required this.messageText, required this.imageUrl, required this.time, required this.isMessageRead});
+  final String messageUUID;
+  ConversationList({required this.student, required this.messageText,required this.time, required this.messageUUID});
   @override
   _ConversationListState createState() => _ConversationListState();
 }
@@ -31,10 +34,14 @@ class _ConversationListState extends State<ConversationList>{
             Expanded(
               child: Row(
                 children: [
-                  CircleAvatar(
-                    backgroundImage: NetworkImage(widget.imageUrl),
-                    maxRadius: 30,
-                  ),
+                  // CircleAvatar(
+                  //   backgroundImage: FileImage(File(widget.student.imageUrl)),
+                  //   maxRadius: 30,
+                  // ),
+                  AvatarStack(avatars: [
+                    for (var n = 0; n < 15; n++)
+                      NetworkImage('https://i.pravatar.cc/150?img=$n'),
+                  ], height: 50,),
                   SizedBox(width: 16,),
                   Expanded(
                     child: Container(
@@ -42,9 +49,9 @@ class _ConversationListState extends State<ConversationList>{
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(widget.name, style: TextStyle(fontSize: 16),),
+                          Text(widget.student.name, style: TextStyle(fontSize: 16),),
                           SizedBox(height: 6,),
-                          Text(widget.messageText, style: TextStyle(fontSize: 13, color: Colors.grey.shade600, fontWeight: widget.isMessageRead?FontWeight.bold:FontWeight.normal),)
+                          Text(widget.messageText, style: TextStyle(fontSize: 13, color: Colors.grey.shade600, ),)
                         ],
                       ),
                     ),
@@ -52,7 +59,7 @@ class _ConversationListState extends State<ConversationList>{
                 ],
               ),
             ),
-            Text(widget.time, style: TextStyle(fontSize: 12, fontWeight: widget.isMessageRead?FontWeight.bold:FontWeight.normal),)
+            Text(widget.time, style: TextStyle(fontSize: 12,),)
           ],
         ),
       ),

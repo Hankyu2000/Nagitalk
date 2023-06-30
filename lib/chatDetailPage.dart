@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:nagisa_talk/models/chatMessageModel.dart';
+import 'package:nagisa_talk/models/messageModel.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'dart:math' as math;
+import 'dart:io';
 
 class ChatDetailPage extends StatefulWidget{
   @override
@@ -10,12 +11,13 @@ class ChatDetailPage extends StatefulWidget{
 
 class _ChatDetailPageState extends State<ChatDetailPage>{
   final random = math.Random();
-  List<ChatMessage> messages = [
-    ChatMessage(messageContent: "ごきげんよう、先生。", messageType: "receiver"),
-    ChatMessage(messageContent: "おはようございます、陛下。", messageType: "sender"),
-    ChatMessage(messageContent: "ふふっ、先生。それは堅苦しすぎではありませんか？", messageType: "receiver"),
-    ChatMessage(messageContent: "それだけ高貴な方なのですよ？陛下は。", messageType: "sender"),
-    ChatMessage(messageContent: "それは嬉しいですね…♪", messageType: "receiver"),
+  final
+  List<Message> messages = [
+    // Message(messageContent: "ごきげんよう、先生。", student),
+    // Message(messageContent: "おはようございます、陛下。"),
+    // Message(messageContent: "ふふっ、先生。それは堅苦しすぎではありませんか？"),
+    // Message(messageContent: "それだけ高貴な方なのですよ？陛下は。"),
+    // Message(messageContent: "それは嬉しいですね…♪"),
   ];
   @override
   Widget build(BuildContext context){
@@ -34,7 +36,7 @@ class _ChatDetailPageState extends State<ChatDetailPage>{
                   }, icon: const Icon(Icons.arrow_back, color: Colors.black,)),
                   SizedBox(width: 2,),
                   CircleAvatar(
-                    backgroundImage: NetworkImage("https://pbs.twimg.com/profile_images/1643761515420610560/srBvbPUm_400x400.jpg"),
+                    //backgroundImage: FileImage(File()),
                     maxRadius: 20,
                   ),
                   SizedBox(width: 12,),
@@ -71,14 +73,14 @@ class _ChatDetailPageState extends State<ChatDetailPage>{
               return Container(
                 padding: EdgeInsets.symmetric(horizontal: 14, vertical: 10),
                 child: Align(
-                  alignment: (messages[index].messageType) == "receiver"?Alignment.topLeft:Alignment.topRight,
+                  //alignment: (messages[index].messageType) == "receiver"?Alignment.topLeft:Alignment.topRight,
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      color: (messages[index]).messageType == "receiver"?Colors.grey.shade200:Colors.blue[200],
+                      //color: (messages[index]).messageType == "receiver"?Colors.grey.shade200:Colors.blue[200],
                     ),
                     padding: EdgeInsets.all(16),
-                    child: Text(messages[index].messageContent, style: TextStyle(fontSize: 15),),
+                    //child: Text(messages[index].messageContent, style: TextStyle(fontSize: 15),),
                   ),
                 )
               );

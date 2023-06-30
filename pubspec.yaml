@@ -45,6 +45,7 @@ dependencies:
   drift: ^2.9.0
   sqlite3_flutter_libs: ^0.5.15
   logger: ^1.4.0
+  avatar_stack: ^1.2.0
 
 
 

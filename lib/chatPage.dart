@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:nagisa_talk/models/chatUserModel.dart';
+import 'package:nagisa_talk/models/messageModel.dart';
 import 'package:nagisa_talk/widgets/conversationList.dart';
+import 'package:nagisa_talk/models/studentsModel.dart';
 
 class ChatPage extends StatefulWidget {
   @override
@@ -9,31 +10,8 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatPage> {
-  List<ChatUsers> chatUsers = [
-    ChatUsers(name: "桐藤 ナギサ", messageText: "ごきげんよう、先生。", imageURL: "images/userImage1.jpeg", time: "Now"),
-    ChatUsers(name: "桐藤 ナギサ", messageText: "ごきげんよう、先生。", imageURL: "images/userImage1.jpeg", time: "Now"),
-    ChatUsers(name: "桐藤 ナギサ", messageText: "ごきげんよう、先生。", imageURL: "images/userImage1.jpeg", time: "Now"),
-    ChatUsers(name: "桐藤 ナギサ", messageText: "ごきげんよう、先生。", imageURL: "images/userImage1.jpeg", time: "Now"),
-    ChatUsers(name: "桐藤 ナギサ", messageText: "ごきげんよう、先生。", imageURL: "images/userImage1.jpeg", time: "Now"),
-    ChatUsers(name: "桐藤 ナギサ", messageText: "ごきげんよう、先生。", imageURL: "images/userImage1.jpeg", time: "Now"),
-    ChatUsers(name: "桐藤 ナギサ", messageText: "ごきげんよう、先生。", imageURL: "images/userImage1.jpeg", time: "Now"),
-    ChatUsers(name: "桐藤 ナギサ", messageText: "ごきげんよう、先生。", imageURL: "images/userImage1.jpeg", time: "Now"),
-    ChatUsers(name: "桐藤 ナギサ", messageText: "ごきげんよう、先生。", imageURL: "images/userImage1.jpeg", time: "Now"),
-    ChatUsers(name: "桐藤 ナギサ", messageText: "ごきげんよう、先生。", imageURL: "images/userImage1.jpeg", time: "Now"),
-    ChatUsers(name: "桐藤 ナギサ", messageText: "ごきげんよう、先生。", imageURL: "images/userImage1.jpeg", time: "Now"),
-    ChatUsers(name: "桐藤 ナギサ", messageText: "ごきげんよう、先生。", imageURL: "images/userImage1.jpeg", time: "Now"),
-    ChatUsers(name: "桐藤 ナギサ", messageText: "ごきげんよう、先生。", imageURL: "images/userImage1.jpeg", time: "Now"),
-    ChatUsers(name: "桐藤 ナギサ", messageText: "ごきげんよう、先生。", imageURL: "images/userImage1.jpeg", time: "Now"),
-    ChatUsers(name: "桐藤 ナギサ", messageText: "ごきげんよう、先生。", imageURL: "images/userImage1.jpeg", time: "Now"),
-    ChatUsers(name: "桐藤 ナギサ", messageText: "ごきげんよう、先生。", imageURL: "images/userImage1.jpeg", time: "Now"),
-    ChatUsers(name: "桐藤 ナギサ", messageText: "ごきげんよう、先生。", imageURL: "images/userImage1.jpeg", time: "Now"),
-    ChatUsers(name: "桐藤 ナギサ", messageText: "ごきげんよう、先生。", imageURL: "images/userImage1.jpeg", time: "Now"),
-    ChatUsers(name: "桐藤 ナギサ", messageText: "ごきげんよう、先生。", imageURL: "images/userImage1.jpeg", time: "Now"),
-    ChatUsers(name: "桐藤 ナギサ", messageText: "ごきげんよう、先生。", imageURL: "images/userImage1.jpeg", time: "Now"),
-    ChatUsers(name: "桐藤 ナギサ", messageText: "ごきげんよう、先生。", imageURL: "images/userImage1.jpeg", time: "Now"),
-    ChatUsers(name: "桐藤 ナギサ", messageText: "ごきげんよう、先生。", imageURL: "images/userImage1.jpeg", time: "Now"),
-    ChatUsers(name: "桐藤 ナギサ", messageText: "ごきげんよう、先生。", imageURL: "images/userImage1.jpeg", time: "Now"),
-    ChatUsers(name: "桐藤 ナギサ", messageText: "ごきげんよう、先生。", imageURL: "images/userImage1.jpeg", time: "Now"),
+  List<Message> messages = [
+    Message(students: [Student(uuid: "7310f918-55a4-406c-bd3a-4fcd1c7963be", name: "桐藤 ナギサ", imageUrl: "E:\\Docs/7310f918-55a4-406c-bd3a-4fcd1c7963be.png", schoolName: "トリニティ総合学園")], messageText: "ごきげんよう、先生。", time: "Now", messageUUID: "7310f918-55a4-406c-bd3a-4fcd1c7963be"),
   ];
   @override
   Widget build(BuildContext context){
@@ -58,17 +36,16 @@ class _ChatPageState extends State<ChatPage> {
               ),
             ),
             ListView.builder(
-              itemCount: chatUsers.length,
+              itemCount: messages.length,
               shrinkWrap: true,
               padding: EdgeInsets.only(top: 16),
               physics: NeverScrollableScrollPhysics(),
               itemBuilder: (context, index){
                 return ConversationList(
-                  name: chatUsers[index].name,
-                  messageText: chatUsers[index].messageText,
-                  imageUrl: chatUsers[index].imageURL,
-                  time: chatUsers[index].time,
-                  isMessageRead: (index == 0 || index == 3)?true:false,
+                  student: messages[index].students[index],
+                  messageText: messages[index].messageText,
+                  time: messages[index].time,
+                  messageUUID: messages[index].messageUUID,
                 );
               },
             ),
