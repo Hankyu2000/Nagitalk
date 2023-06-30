@@ -34,6 +34,17 @@
   "formPickImage": "Pick Image",
   "@formPickImage": {
     "description": "Pick Image"
-  }
-
+  },
+  "createStudent": "Create Student with Current Context",
+  "@createStudent": {
+    "description": "Create Student"
+  },
+  "defaultStudentName": "Example Student",
+  "defaultSchoolName": "Independent Federal Investigation Club SCHALE",
+  "createStudentConfirmationContent": "Are you sure to create student with current data?",
+  "deleteStudentConfirmationContent": "Are you sure to delete student?",
+  "confirmation": "Are you sure?",
+  "yes": "Yes",
+  "no": "No",
+  "itemDismissed": "Deleted \"{item}\"."
 }

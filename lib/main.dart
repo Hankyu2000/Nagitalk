@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:nagisa_talk/homePage.dart';
+import 'package:nagisa_talk/models/dbs/studentsDataBase.dart';
 
+late StudentsDatabase studentsDatabase;
 
 void main() {
+  studentsDatabase = StudentsDatabase();
   runApp(MyApp());
 }
 
