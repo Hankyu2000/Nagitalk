@@ -38,11 +38,14 @@ class _ConversationListState extends State<ConversationList>{
                   //   backgroundImage: FileImage(File(widget.student.imageUrl)),
                   //   maxRadius: 30,
                   // ),
-                  AvatarStack(avatars: [
-                    for (var n = 0; n < 15; n++)
-                      NetworkImage('https://i.pravatar.cc/150?img=$n'),
-                  ], height: 50,),
-                  SizedBox(width: 16,),
+                  Expanded(
+                    child: Container(
+                      child: AvatarStack(avatars: [
+                        for (var n = 0; n < 15; n++)
+                          NetworkImage('https://i.pravatar.cc/150?img=$n'),
+                      ], height: 50),
+                    ),
+                  ),
                   Expanded(
                     child: Container(
                       color: Colors.transparent,
