@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:nagisa_talk/chatDetailPage.dart';
+import 'package:nagisa_talk/models/studentsModel.dart';
 
 class StudentsList extends StatefulWidget{
-  final String name;
-  final String schoolName;
-  final String imageUrl;
-  final String uuid;
-  StudentsList({required this.name, required this.schoolName, required this.imageUrl, required this.uuid});
+  final Student studentData;
+  StudentsList({required this.studentData});
   @override
   _StudentsListState createState() => _StudentsListState();
 }
@@ -22,7 +20,7 @@ class _StudentsListState extends State<StudentsList>{
               child: Row(
                 children: [
                   CircleAvatar(
-                    backgroundImage: AssetImage(widget.imageUrl),
+                    backgroundImage: AssetImage(widget.studentData.imageUrl),
                     maxRadius: 30,
                   ),
                   SizedBox(width: 16,),
@@ -32,9 +30,9 @@ class _StudentsListState extends State<StudentsList>{
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(widget.name, style: TextStyle(fontSize: 16),),
+                          Text(widget.studentData.name, style: TextStyle(fontSize: 16),),
                           SizedBox(height: 6,),
-                          Text(widget.uuid, style: TextStyle(fontSize: 13, color: Colors.grey.shade600, fontWeight: FontWeight.normal),)
+                          Text(widget.studentData.schoolName, style: TextStyle(fontSize: 13, color: Colors.grey.shade600, fontWeight: FontWeight.normal),)
                         ],
                       ),
                     ),

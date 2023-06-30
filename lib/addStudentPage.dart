@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:nagisa_talk/models/dbs/studentsDataBase.dart';
 import 'package:nagisa_talk/models/studentsModel.dart';
 import 'package:nagisa_talk/widgets/studentsList.dart';
 import 'dart:io';
 import 'package:uuid/uuid.dart';
 import 'dart:async';
-import 'package:nagisa_talk/libraries/file_controller.dart';
+import 'package:nagisa_talk/libraries/fileController.dart';
 
 class AddStudentPage extends StatefulWidget{
   @override
@@ -14,11 +15,43 @@ class AddStudentPage extends StatefulWidget{
 }
 
 class _AddStudentPageState extends State<AddStudentPage>{
+  late final database = StudentsDatabase();
   late File imageFile;
   final uuidObject = Uuid();
   String _filePath = "";
   late final currentUUID = uuidObject.v4();
-  late Students sampleStudent = Students(uuid: currentUUID, )
+  late Student sampleStudent = Student(uuid: currentUUID, name: "サンプル生徒", imageUrl: "", schoolName: "連邦捜査部シャーレ");
+  final TextEditingController nameFieldController = TextEditingController();
+  final TextEditingController schoolNameFieldController = TextEditingController();
+
+  @override
+  void initState(){
+    super.initState();
+    nameFieldController.addListener(onNameFieldChanged);
+    schoolNameFieldController.addListener(onSchoolNameFieldChanged);
+  }
+
+  void onNameFieldChanged(){
+    setState(() {
+      sampleStudent.name = nameFieldController.text;
+    });
+  }
+
+  void onSchoolNameFieldChanged(){
+    setState(() {
+      sampleStudent.schoolName = schoolNameFieldController.text;
+    });
+  }
+
+
+  @override
+  void dispose(){
+    nameFieldController.dispose();
+    schoolNameFieldController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
@@ -55,6 +88,7 @@ class _AddStudentPageState extends State<AddStudentPage>{
                   decoration: InputDecoration(
                     hintText: AppLocalizations.of(context)!.formName
                   ),
+                  controller: nameFieldController,
                 ),
               ),
               Container(
@@ -63,6 +97,7 @@ class _AddStudentPageState extends State<AddStudentPage>{
                   decoration: InputDecoration(
                       hintText: AppLocalizations.of(context)!.formSchoolName
                   ),
+                  controller: schoolNameFieldController,
                 ),
               ),
               Container(
@@ -72,6 +107,7 @@ class _AddStudentPageState extends State<AddStudentPage>{
                     String? _filePathObj = await _getAndSaveFromDevice(source: ImageSource.gallery, filename: currentUUID);
                     setState(() {
                         _filePath = _filePathObj!;
+
                     });
                   },
                   child: Text(AppLocalizations.of(context)!.formPickImage),
@@ -82,7 +118,7 @@ class _AddStudentPageState extends State<AddStudentPage>{
                   child: Text(_filePath)
               ),
               Container(
-                child: StudentsList(),
+                child: StudentsList(studentData: sampleStudent,),
               )
             ],
           )

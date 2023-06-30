@@ -12,10 +12,10 @@ import 'package:uuid/uuid.dart';class StudentsListPage extends StatefulWidget{
 
 class _StudentsListPageState extends State<StudentsListPage>{
   var uuidFunc = Uuid();
-  late List<Students> students = [
-    Students(name:"桐藤 ナギサ", schoolName: "トリニティ総合学園", imageUrl: "assets/images/Nagisa.jpeg", uuid: uuidFunc.v4()),
-    Students(name:"聖園 ミカ", schoolName: "トリニティ総合学園", imageUrl: "assets/images/Nagisa.jpeg", uuid: uuidFunc.v4()),
-    Students(name:"百合園 セイア", schoolName: "トリニティ総合学園", imageUrl: "assets/images/Nagisa.jpeg", uuid: uuidFunc.v4()),
+  late List<Student> students = [
+    Student(name:"桐藤 ナギサ", schoolName: "トリニティ総合学園", imageUrl: "assets/images/Nagisa.jpeg", uuid: uuidFunc.v4()),
+    Student(name:"聖園 ミカ", schoolName: "トリニティ総合学園", imageUrl: "assets/images/Nagisa.jpeg", uuid: uuidFunc.v4()),
+    Student(name:"百合園 セイア", schoolName: "トリニティ総合学園", imageUrl: "assets/images/Nagisa.jpeg", uuid: uuidFunc.v4()),
   ];
   @override
   Widget build(BuildContext context){
@@ -46,10 +46,7 @@ class _StudentsListPageState extends State<StudentsListPage>{
               physics: NeverScrollableScrollPhysics(),
               itemBuilder: (context, index){
                 return StudentsList(
-                  name: students[index].name,
-                  schoolName: students[index].schoolName,
-                  imageUrl: students[index].imageUrl,
-                  uuid: students[index].uuid,
+                  studentData: students[index],
                 );
               },
             ),
