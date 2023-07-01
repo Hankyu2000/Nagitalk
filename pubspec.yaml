@@ -46,6 +46,7 @@ dependencies:
   sqlite3_flutter_libs: ^0.5.15
   logger: ^1.4.0
   avatar_stack: ^1.2.0
+  flutter_launcher_icons: ^0.13.1
 
 
 
@@ -106,3 +107,9 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon/NagiTalk.png"
+  remove_alpha_ios: true

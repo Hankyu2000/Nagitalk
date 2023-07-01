@@ -2,30 +2,49 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:nagisa_talk/chatDetailPage.dart';
+import 'package:nagisa_talk/models/conversationModel.dart';
 import 'package:nagisa_talk/models/studentsModel.dart';
 import 'package:avatar_stack/avatar_stack.dart';
+import 'package:logger/logger.dart';
 
-class ConversationList extends StatefulWidget{
-  final Student student;
-  final String messageText;
-  final String time;
-  final String messageUUID;
-  ConversationList({required this.student, required this.messageText,required this.time, required this.messageUUID});
+class ConversationList extends StatefulWidget {
+  late final Conversation conversation;
+
+  ConversationList({required this.conversation});
+
+  List<ImageProvider<Object>> participatedStudentsAvatar = [];
+
   @override
   _ConversationListState createState() => _ConversationListState();
 }
 
-class _ConversationListState extends State<ConversationList>{
-  @override
-  Widget build(BuildContext context){
-    return GestureDetector(
-      onTap: (){
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context){
-              return ChatDetailPage();
-            })
-        );
+class _ConversationListState extends State<ConversationList> {
+  final logger = Logger();
 
+  void updateStudentAvatars() {
+    widget.participatedStudentsAvatar = [];
+    for (var student in widget.conversation.participatedStudents) {
+      widget.participatedStudentsAvatar.add(FileImage(File(student.imageUrl)));
+      logger.i(student.imageUrl);
+    }
+  }
+
+  @override
+  initState() {
+    super.initState();
+
+    logger.i("Init!");
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    updateStudentAvatars();
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          //return ChatDetailPage(messages: [], participatingStudents: widget.conversation.participatedStudents,);
+          return ChatDetailPage(participatingStudents: widget.conversation.participatedStudents,);
+        }));
       },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
@@ -38,23 +57,33 @@ class _ConversationListState extends State<ConversationList>{
                   //   backgroundImage: FileImage(File(widget.student.imageUrl)),
                   //   maxRadius: 30,
                   // ),
-                  Expanded(
-                    child: Container(
-                      child: AvatarStack(avatars: [
-                        for (var n = 0; n < 15; n++)
-                          NetworkImage('https://i.pravatar.cc/150?img=$n'),
-                      ], height: 50),
-                    ),
+                  ConstrainedBox(
+                    constraints: BoxConstraints(
+                        maxWidth: MediaQuery.of(context).size.width * 0.1),
+                    child: AvatarStack(
+                        avatars: widget.participatedStudentsAvatar, height: 60),
                   ),
+                  SizedBox(width: 10,),
                   Expanded(
                     child: Container(
                       color: Colors.transparent,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(widget.student.name, style: TextStyle(fontSize: 16),),
-                          SizedBox(height: 6,),
-                          Text(widget.messageText, style: TextStyle(fontSize: 13, color: Colors.grey.shade600, ),)
+                          Text(
+                            widget.conversation.conversationName,
+                            style: TextStyle(fontSize: 16),
+                          ),
+                          SizedBox(
+                            height: 6,
+                          ),
+                          Text(
+                            (widget.conversation.messages.isEmpty)?"":widget.conversation.messages.last.messageText,
+                            style: TextStyle(
+                              fontSize: 13,
+                              color: Colors.grey.shade600,
+                            ),
+                          )
                         ],
                       ),
                     ),
@@ -62,7 +91,6 @@ class _ConversationListState extends State<ConversationList>{
                 ],
               ),
             ),
-            Text(widget.time, style: TextStyle(fontSize: 12,),)
           ],
         ),
       ),

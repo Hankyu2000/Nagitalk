@@ -107,6 +107,7 @@ class _StudentsListPageState extends State<StudentsListPage> {
                         });
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(AppLocalizations.of(context)!.itemDismissed(backupStudent.name))));
                         studentsDatabase.deleteStudent(backupStudent.uuid);
+                        studentsDatabase.deleteAllMessageFromStudent(backupStudent.uuid);
                         return true;
                       }else{
                         return false;

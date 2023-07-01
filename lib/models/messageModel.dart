@@ -1,10 +1,12 @@
 import 'package:nagisa_talk/models/studentsModel.dart';
 
 class Message{
-  List<Student> students;
+  Student sender;
   String messageText;
-  String time;
+  //String time;
+  //Offline: Currently not in use
   String messageUUID;
-  Message({required this.students, required this.messageText , required this.time, required this.messageUUID});
+  String conversationUUID;
+  Message({required this.sender, required this.messageText, required this.messageUUID, required this.conversationUUID});
 }
 
